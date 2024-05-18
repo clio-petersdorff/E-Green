@@ -32,11 +32,18 @@ form{
     padding:30px;
 }
 
+form p {
+    margin:0;
+    text-align: left;
+    color:red;
+}
+
+
 form input {
     padding:7px;
     border-radius: 5px;
     border:3px solid transparent;
-    margin:20px 0;
+    margin:10px 0;
 }
 
 form input:focus {
