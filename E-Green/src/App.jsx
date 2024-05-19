@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import Homepage from './components/Homepage'
 import RaiseAwareness from './components/RaiseAwareness'
+import Loading from './components/Loading';
+import Results from './components/Results';
+
 import axios from 'axios';
 import { co2 } from '@tgwf/co2';
 
 import '../src/App.css'
 
 export default function App() {
-  let myKeySpeed = "AIzaSyBbPGKJV_6KhpruB8Q2Ra15LdU95i0MWzA"
+  const [emissions,setEmissions] = useState(null);
+  const [isLoading,setIsLoading] = useState(false);
+  
+  
 
   function getBytesNumber(url){
+    let myKeySpeed = "AIzaSyBbPGKJV_6KhpruB8Q2Ra15LdU95i0MWzA"
 
     axios.get(`https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed`, {
       params:{
@@ -63,15 +71,24 @@ export default function App() {
   function getCO2gramsPerView(bytes,isGreen){
     const swd = new co2({model: "swd"});
 
-    console.log(swd.perVisit(bytes,isGreen));
+    let result = swd.perVisit(bytes,isGreen);
+
+    setEmissions(result);
+    setIsLoading(false);
   }
 
-  // getBytesNumber('https://orlanebdesign.com');
+  
+  function submittedURL(url){
+    setIsLoading(true);
+    getBytesNumber(url);
+  }
+
 
   return (
     <div>
-      < Homepage />
-      {/* Results */}
+      {!isLoading && !emissions && < Homepage submittedURLCb={(url)=>submittedURL(url)} />}
+      {isLoading && <Loading />}
+      {!isLoading && emissions && <Results emissions={emissions}/>}
       <RaiseAwareness />
     </div>
   )

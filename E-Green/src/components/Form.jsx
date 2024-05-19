@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Form() {
+export default function Form({submittedURLCb}) {
   const [url,setUrl] = useState("");
   const [validUrl,setValidUrl] = useState(true);
 
@@ -24,11 +24,8 @@ export default function Form() {
     event.preventDefault();
 
     if(checkIfValidUrl(url)){
-      //Cb function
-      console.log("good");
-    }
-
-    console.log('bad');
+      submittedURLCb(url);
+    } 
 
     setUrl("");
   }
