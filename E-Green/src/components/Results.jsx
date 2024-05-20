@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import Quiz from './Quiz';
+
 import "../style/Results.css"
 
-export default function Results({emissions}) {
+export default function Results({emissions,isGreenHoster}) {
+    const [visitors,setVisitors] = useState(100);
     let score;
     //100 is 0.10g and 0 is 5.1g
 
@@ -20,7 +24,7 @@ export default function Results({emissions}) {
 
     //Get the score with 100x x / 5
     function calculateScore (){
-        let g=emissions;
+        let g=emissions-0.1;
 
         if(g<1){
             score = Math.round(((g*60)/2));
@@ -33,6 +37,10 @@ export default function Results({emissions}) {
 
     calculateScore();
 
+    function handleChange(event){
+        setVisitors(event.target.value);
+    }
+
   return (
     <div id="results">
         <div id="logo"> 
@@ -40,15 +48,27 @@ export default function Results({emissions}) {
             <hr />
         </div>
 
-        <div id="quiz">
-            <h2>Quiz</h2>
+        <Quiz id="quiz"/>
+
+        <div id="score"><span>{score}</span><br/>/100</div>
+
+        <div id="co2Emissions">
+            <p>This page emits <span >{emissions.toFixed(2)}g</span> of Co2 per visit. <br/><br/></p>
+
+            <p>For <input value={visitors} id="inputVisitors" type='number' onChange={(event)=>handleChange(event)}/> 
+                visitors a month, <br/>
+                This page would emit  
+                <span>{emissions*visitors>1000? ` ${((emissions*visitors)/1000).toFixed(2)}Kg` : ` ${(emissions*visitors).toFixed(2)}g`}</span> of Co2.
+            </p>
+
+
         </div>
 
-        <div id="score">{score}</div>
-
-        <p id="co2Emissions">You have {emissions}g of Co2 per view!</p>
-
-        <p id="infos">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br/> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+        <div id="infos">
+            {isGreenHoster && <p style={{color:'#82BA95'}}>Your website's hoster is green !</p>}
+            {!isGreenHoster && <p><span style={{color:'red'}}>You don't have a green hoster for your website.</span><br/>
+                Or we don't know the hoster on <a target='blank' href='https://app.greenweb.org/directory/'>this database</a>.</p>}
+        </div>
 
     </div>
   )

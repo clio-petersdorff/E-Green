@@ -13,6 +13,19 @@ button:hover {
   color: #242424;
 }
 
+a {
+  color:#82BA95;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 hr {
   width:30%;
+}
+
+h2 {
+  color:#82BA95;
+  font-weight: 800;
 }

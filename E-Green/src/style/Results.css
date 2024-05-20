@@ -26,7 +26,13 @@
     margin-bottom: 0;
 }
 
-
+#inputVisitors {
+    width: 50px;
+    margin : 0 5px;
+    border-radius: 3px;
+    border:none;
+    padding: 4px;
+}
 
 #score {
     grid-area: 2/1/3/1;
@@ -39,20 +45,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+#score span {
     font-size: 5em;
 }
 
-#quiz {
-    grid-area: 1/3/4/4;
-    background-color: #B1D8C3;
-    height:100%;
-    border-radius: 5px;
-    color : #242424;
-    text-align: center;
-}
+/* #quiz {
+    grid-area: 1/3/span 3/4;
+    height:100vh
+} */
 
 #infos {
     grid-area: 3/1/3/3;
 }
 
+#co2Emissions span {
+    font-weight: 700;
+    color:#82BA95
+}

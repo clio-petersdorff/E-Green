@@ -4,6 +4,7 @@ import Homepage from './components/Homepage'
 import RaiseAwareness from './components/RaiseAwareness'
 import Loading from './components/Loading';
 import Results from './components/Results';
+import Quiz from './components/Quiz';
 
 import axios from 'axios';
 import { co2 } from '@tgwf/co2';
@@ -12,7 +13,9 @@ import '../src/App.css'
 
 export default function App() {
   const [emissions,setEmissions] = useState(null);
+  const [greenHoster,setGreenHoster] = useState(true);
   const [isLoading,setIsLoading] = useState(false);
+  const [view,setView]= useState('Homepage');
   
   
 
@@ -74,22 +77,30 @@ export default function App() {
     let result = swd.perVisit(bytes,isGreen);
 
     setEmissions(result);
-    setIsLoading(false);
+    setGreenHoster(isGreen);
+    setView("Results");
   }
 
   
   function submittedURL(url){
-    setIsLoading(true);
+    setView("Loading");
     getBytesNumber(url);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function takeQuizOnly(){
+    setView("QuizOnly");
+    window.scrollTo({top:0, behavior: "smooth"});
   }
 
 
   return (
     <div>
-      {!isLoading && !emissions && < Homepage submittedURLCb={(url)=>submittedURL(url)} />}
-      {isLoading && <Loading />}
-      {!isLoading && emissions && <Results emissions={emissions}/>}
-      <RaiseAwareness />
+      {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} takeQuizOnlyCb={takeQuizOnly} />}
+      {view==="Loading" && <Loading />}
+      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster}/>}
+      {view==="QuizOnly" && <Quiz />}
+      <RaiseAwareness submittedURLCb={(url)=>submittedURL(url)} currentView={view} takeQuizOnly={()=>takeQuizOnly()}/>
     </div>
   )
 }
