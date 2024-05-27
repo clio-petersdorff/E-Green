@@ -1,0 +1,67 @@
+#homepage{
+    height:80vh;
+    padding-top:15vh;
+}
+
+#homepage img {
+    width:35%;
+    margin-bottom: 20px;
+}
+
+.scrollDown{
+    border-radius: 50%;
+    width:60px;
+    height: 60px;
+    display: block;
+    margin: 60px auto 0;
+    background-color: #A3C086;
+    color:#242424;
+}
+
+.scrollDown:hover{
+    background-color: #B1D8C3;
+    color:#242424
+}
+
+form{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width:60%;
+    margin:0 auto;
+    align-items: center;
+    padding:30px;
+}
+
+form p {
+    margin:0;
+    text-align: left;
+    color:red;
+}
+
+
+form input {
+    padding:7px;
+    border-radius: 5px;
+    border:3px solid transparent;
+    margin:10px 0;
+}
+
+form input:focus {
+    border-color: #82BA95;
+}
+
+form .quizOnlyButton{
+    grid-column: 1/span 2;
+}
+
+.quizOnlyButton {
+    background-color: transparent;
+    color:white;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.quizOnlyButton:hover{
+    background-color: transparent;
+    color:#82BA95;
+}

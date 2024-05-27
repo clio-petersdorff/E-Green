@@ -1,0 +1,31 @@
+button {
+  padding:10px;
+  border-radius: 5px;
+  background-color: #56764D;
+  border: none;
+  color: white;
+  margin : 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #82BA95;
+  color: #242424;
+}
+
+a {
+  color:#82BA95;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  width:30%;
+}
+
+h2 {
+  color:#82BA95;
+  font-weight: 800;
+}
