@@ -16,13 +16,13 @@ CREATE TABLE good_practices(
     id INT NOT NULL AUTO_INCREMENT, 
     name VARCHAR(255) NOT NULL, 
     profile VARCHAR(40) NOT NULL,
-    `when` VARCHAR(40) NOT NULL,
+    alreadycreated VARCHAR(40) NOT NULL,
     how_to TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
 -- Create the recommendations
-INSERT INTO good_practices (name, profile, `when`, how_to) VALUES
+INSERT INTO good_practices (name, profile, alreadycreated, how_to) VALUES
 ('Eliminate non-essential features', 'Beginner', 'Before', 'Identify and remove features that are not crucial to the core functionality of your application. This helps to simplify the user experience and improve performance.'),
 ('Precisely quantify the need', 'Beginner', 'Before', 'Conduct research and gather data to accurately define the requirements of your project. This ensures that you focus on what is truly needed and avoid unnecessary features.'),
 ('Optimize user journey', 'Intermediate', 'Doesn\'t matter', 'Analyze and streamline the steps a user takes to complete key tasks in your application. Remove obstacles and simplify navigation to enhance usability.'),
