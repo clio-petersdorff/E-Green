@@ -43,11 +43,11 @@
     background-color: #A3C086;
 }
 
-#quizComponent li {
+#quizComponent p {
     margin : 5px 0;
 }
 
-#quizComponent li:hover {
+#quizComponent p:hover {
     color:white;
     cursor: pointer;
 }
@@ -57,9 +57,9 @@
     color: #A3C086;
 }
 
-#quizComponent ul {
+#quizComponent .recoBlock {
     overflow: scroll;
-    height:55%;
+    height:56vh;
     width:90%;
     padding: 20px 5%;
     color:#242424;
@@ -67,7 +67,7 @@
 }
 
 #quizComponent #featuredReco {
-    height:30%;
+    height:20vh;
     padding: 50px 50px;
     padding-top: 15px;
     overflow: hidden;

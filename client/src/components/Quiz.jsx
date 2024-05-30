@@ -29,7 +29,7 @@ export default function Quiz() {
     <div id="quizComponent">
 
         {step==="questions" && <QuizQuestions submitAnswersCb={(profile,when)=>submitAnswers(profile,when)} />}
-        {step==="recommendations" && <QuizRecommendations takeQuizAgain={()=>setStep("questions")} />}
+        {step==="recommendations" && <QuizRecommendations takeQuizAgain={()=>setStep("questions")} userAnswers={answers}/>}
     </div>
   )
 }

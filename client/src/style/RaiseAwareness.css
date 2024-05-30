@@ -60,6 +60,14 @@ footer {
     margin-top:180px;
 }
 
+footer a {
+    color:#56764D
+}
+
+footer a:hover{
+    color:white
+}
+
 nav {
     background-color: #56764D;
 }

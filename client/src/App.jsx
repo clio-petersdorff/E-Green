@@ -95,7 +95,8 @@ export default function App() {
 
 
   return (
-    <div>
+    <>
+
       {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} takeQuizOnlyCb={takeQuizOnly} />}
 
       {view==="Loading" && <Loading />}
@@ -106,7 +107,7 @@ export default function App() {
       
       <RaiseAwareness submittedURLCb={(url)=>submittedURL(url)} 
       currentView={view} takeQuizOnly={()=>takeQuizOnly()}/>
-    </div>
+    </>
   )
 }
 

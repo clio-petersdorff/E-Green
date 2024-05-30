@@ -1,16 +1,32 @@
-import React, { useState } from 'react'
-import dataQuiz from "../dataQuiz.js"
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+// import dataQuiz from "../dataQuiz.js"
 
-export default function QuizRecommendations({takeQuizAgain}) {
+export default function QuizRecommendations({takeQuizAgain, userAnswers}) {
 
-  let profile = "Beginner";
-  let when="Before";
+  const {profile,when} = userAnswers;
+  const [reco,setReco] = useState(null);
+  const [featuredReco,setFeaturedReco] =useState();
  
-  let reco = dataQuiz.filter((item)=>{
-    return item.profile===profile && (item.when===when || item.when==="Doesn't matter");
-  })
+  // let reco = dataQuiz.filter((item)=>{
+  //   return item.profile===profile && (item.when===when || item.when==="Doesn't matter");
+  // })
 
-  const [featuredReco,setFeaturedReco] =useState(reco[0]);
+  useEffect(()=>{
+    getRecommendations();
+  }, [])
+
+  function getRecommendations (){
+    axios.get(`http://localhost:5000/api/goodpratices/${profile}/${when}`)
+    .then((response)=> {setReco(response.data);
+      setFeaturedReco(response.data[0]);
+      // console.log(response.data)
+    }
+    ).catch((err)=>console.log(err.message))
+  }
+
+
+  
 
   function handleClick(name){
     let newFeaturedReco = reco.find((item)=> item.name===name);
@@ -22,18 +38,22 @@ export default function QuizRecommendations({takeQuizAgain}) {
     <>
       <button id='takeQuizAgain' onClick={()=>takeQuizAgain()}>←</button>
 
+      { reco && <div>
       <div id="featuredReco">
         <h2>{featuredReco.name}</h2>
-        <p>{featuredReco.howTo}</p>
+        <p>{featuredReco.how_to}</p>
       </div>
 
-      <ul>
+      <div className='recoBlock'>
         {reco.map((item)=>(
-          <li key={item.name} onClick={()=>handleClick(item.name)}
+          <p key={item.name} onClick={()=>handleClick(item.name)}
               className={item.name===featuredReco.name?"selectedReco":""}
-          >{item.name}</li>
+          >{item.name}</p>
         ))}
-      </ul>
+      </div>
+
+      </div>}
+      
 
     </>
   )

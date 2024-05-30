@@ -35,12 +35,12 @@ export default function RaiseAwareness({submittedURLCb, currentView,takeQuizOnly
             <nav>
                 <button onClick={()=>window.scrollTo({ top: 0, behavior: 'smooth' })} >Check my website</button>
                 <button onClick={()=>takeQuizOnly()}>Take the quiz only</button>
-                <button>Learn more on eco-conception</button>
+                <a href='https://www.greenit.fr/categorie/bonnes-pratiques/' target='blank' title='Green IT - In french'><button>Learn more on eco-conception</button></a>
             </nav>
 
             <section>
                 <img src='src/assets/main-logo.svg'/>
-                <p className='align-right'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididu adipiscing elit, sed do eiusmod tempor incididu adipiscing elit, sed do eiusmod tempor incididu </p>
+                <p className='align-right'>This web app was created with the APIs : <br/><a href='https://developers.google.com/speed/docs/insights/v5/get-started?hl=fr'>Google LightHouse</a>, <a href='https://www.whoisxmlapi.com/'>Who Is XML</a>, <a href='https://developers.thegreenwebfoundation.org/api/greencheck/v3/check-single-domain/'>Green Check (The Green Web Foundation)</a> and the library <a href='https://developers.thegreenwebfoundation.org/co2js/methods/'>Co2.js (The Green Web Foundation)</a>.</p>
             </section>
             
             <button onClick={()=>window.scrollTo({ top: 0, behavior: 'smooth' })}>To top</button>
