@@ -13,11 +13,11 @@ export default function Results({emissions,isGreenHoster}) {
         let g=emissions-0.1;
 
         if(g<1){
-            score = Math.round(((g*60)/2));
+            score = Math.round(((g*50)/1.5));
             score = 100-score;
         } else {
-            score = Math.round(((g*50)/2.5));
-            score = score>=50? 100-score : 50+score;
+            score = Math.round(((g*50)/1.5));
+            score = score<=50? 100-score : 50+score;
         }
     }
 

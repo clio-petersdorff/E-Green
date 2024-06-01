@@ -12,6 +12,11 @@ To calculate the emissions, E-Green uses several APIs:
 - **The Green Web Foundation - Green Check**: Verifies if the hosting provider is considered "green" (uses renewable energy, produces low waste, compensates emissions, etc.).
 - **The Green Web Foundation - CO2 Library**: Calculates the CO2 emissions of a page based on the byte size and the hosting provider's green status.
 
+### Score
+The score is based on the Co2 emissions per page.
+It goes from 0 to 100. 0 being the lowest at 3g of Co2 per page,
+And 100 being the highest with 0.1g of Co2 per page.
+
 ### Technologies Used
 - **Frontend**: React
 - **Backend**: Express
@@ -39,3 +44,6 @@ The `npm run migrate` command will create and initialize the database. The scrip
 
 ## Usage
 Once the project is set up, you can start the server with `npm start`, start the frontend with `npm run dev` and use the web app to evaluate the CO2 emissions of your webpages and receive recommendations to reduce them.
+
+### Documentation
+You can find all the documentation for this project on [this Notion Link](https://orlanebdesign.notion.site/2cf6387ea96e4109b9b6e6b25f11b055?v=cb7f9903aa364169a81b6a2fe1432061&pvs=4).
