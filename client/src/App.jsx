@@ -14,7 +14,7 @@ import '../src/App.css'
 export default function App() {
   const [emissions,setEmissions] = useState(null);
   const [greenHoster,setGreenHoster] = useState(true);
-  const [isLoading,setIsLoading] = useState(false);
+  // const [isLoading,setIsLoading] = useState(false);
   const [view,setView]= useState('Homepage');
   
   

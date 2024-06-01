@@ -8,7 +8,7 @@ export default function Homepage({submittedURLCb,changeView}) {
     <div id="homepage">
         <img src='src/assets/logo-inline-clear.svg' />
         <hr />
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br/> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+        <p>Welcome to E-Green, <br/>Enter the URL of a website page to get its Co2 emissions and eco-score</p>
 
         <Form submittedURLCb={(url)=>submittedURLCb(url)} changeView={(view)=>changeView(view)}/>
 
