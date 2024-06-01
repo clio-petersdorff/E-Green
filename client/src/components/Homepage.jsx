@@ -12,7 +12,7 @@ export default function Homepage({submittedURLCb,changeView}) {
 
         <Form submittedURLCb={(url)=>submittedURLCb(url)} changeView={(view)=>changeView(view)}/>
 
-        <button className='scrollDown'>↓</button>
+        <button className='scrollDown'><img src='../src/assets/arrow-down.svg' style={{width:"50%", paddingTop:"20%"}}/></button>
     </div>
   )
 }
