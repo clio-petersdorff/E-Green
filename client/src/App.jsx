@@ -88,8 +88,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function takeQuizOnly(){
-    setView("QuizOnly");
+  function changeView(newView){
+    setView(newView);
     window.scrollTo({top:0, behavior: "smooth"});
   }
 
@@ -97,7 +97,7 @@ export default function App() {
   return (
     <>
 
-      {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} takeQuizOnlyCb={takeQuizOnly} />}
+      {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} changeView={(view)=>changeView(view)} />}
 
       {view==="Loading" && <Loading />}
 
@@ -106,7 +106,7 @@ export default function App() {
       {view==="QuizOnly" && <Quiz />}
       
       <RaiseAwareness submittedURLCb={(url)=>submittedURL(url)} 
-      currentView={view} takeQuizOnly={()=>takeQuizOnly()}/>
+      currentView={view} changeView={(view)=>changeView(view)}/>
     </>
   )
 }

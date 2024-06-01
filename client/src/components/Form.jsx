@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Form({submittedURLCb,takeQuizOnlyCb}) {
+export default function Form({submittedURLCb,changeView}) {
   const [url,setUrl] = useState("");
   const [validUrl,setValidUrl] = useState(true);
 
@@ -38,7 +38,7 @@ export default function Form({submittedURLCb,takeQuizOnlyCb}) {
 
             {!validUrl && <p>Try again, this isn't a valid URL</p>}
 
-            <button className='quizOnlyButton' onClick={()=>takeQuizOnlyCb()}>Take the quiz only</button>
+            <button className='quizOnlyButton' onClick={()=>changeView("QuizOnly")}>Take the quiz only</button>
         </form>
   )
 }

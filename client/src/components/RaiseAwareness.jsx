@@ -3,7 +3,12 @@ import Form from './Form'
 
 import "../style/RaiseAwareness.css"
 
-export default function RaiseAwareness({submittedURLCb, currentView,takeQuizOnly}) {
+export default function RaiseAwareness({submittedURLCb, currentView,changeView}) {
+
+    function handleCheckMyWebsite(){
+        window.scrollTo({top:0, behavior: "smooth"});
+        changeView("Homepage");
+    }
 
   return (
     <>
@@ -22,7 +27,7 @@ export default function RaiseAwareness({submittedURLCb, currentView,takeQuizOnly
         </section>
 
         <section className='align-right'>
-            <Form submittedURLCb={(url)=>submittedURLCb(url)} takeQuizOnly={()=>takeQuizOnly()} />
+            <Form submittedURLCb={(url)=>submittedURLCb(url)} changeView={(view)=>changeView(view)} />
 
             <div>
                 <h2>HOW</h2>
@@ -33,13 +38,14 @@ export default function RaiseAwareness({submittedURLCb, currentView,takeQuizOnly
 
         <footer>
             <nav>
-                <button onClick={()=>window.scrollTo({ top: 0, behavior: 'smooth' })} >Check my website</button>
-                <button onClick={()=>takeQuizOnly()}>Take the quiz only</button>
+                <button onClick={()=> handleCheckMyWebsite()} >Check my website</button>
+                <button onClick={()=>changeView("QuizOnly")}>Take the quiz only</button>
                 <a href='https://www.greenit.fr/categorie/bonnes-pratiques/' target='blank' title='Green IT - In french'><button>Learn more on eco-conception</button></a>
             </nav>
 
             <section>
                 <img src='src/assets/main-logo.svg'/>
+
                 <p className='align-right'>This web app was created with the APIs : <br/><a href='https://developers.google.com/speed/docs/insights/v5/get-started?hl=fr'>Google LightHouse</a>, <a href='https://www.whoisxmlapi.com/'>Who Is XML</a>, <a href='https://developers.thegreenwebfoundation.org/api/greencheck/v3/check-single-domain/'>Green Check (The Green Web Foundation)</a> and the library <a href='https://developers.thegreenwebfoundation.org/co2js/methods/'>Co2.js (The Green Web Foundation)</a>.</p>
             </section>
             
