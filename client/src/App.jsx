@@ -12,9 +12,9 @@ import { co2 } from '@tgwf/co2';
 import '../src/App.css'
 
 export default function App() {
-  const [emissions,setEmissions] = useState(2.3);
+  const [emissions,setEmissions] = useState(null);
   const [greenHoster,setGreenHoster] = useState(true);
-  const [view,setView]= useState('Results');
+  const [view,setView]= useState('Homepage');
   
   
   //These four functions are chained and calculates a website's Co2 emissions

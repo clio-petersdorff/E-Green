@@ -59,15 +59,15 @@
 
 #quizComponent .recoBlock {
     overflow: scroll;
-    height:56vh;
-    width:90%;
+    height:60vh;
+    width:100%;
     padding: 20px 5%;
     color:#242424;
     background-color: #82ba959a;
 }
 
 #quizComponent #featuredReco {
-    height:20vh;
+    height:30vh;
     padding: 50px 50px;
     padding-top: 15px;
     overflow: hidden;

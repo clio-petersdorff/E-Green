@@ -21,7 +21,7 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
         }
     }
 
-    useEffect(calculateScore(),[])
+    calculateScore()
     
 
     function handleChange(event){
