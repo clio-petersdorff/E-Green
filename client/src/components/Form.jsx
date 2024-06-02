@@ -8,6 +8,8 @@ export default function Form({submittedURLCb,changeView}) {
     setUrl(event.target.value);
   }
 
+  //If the URL does not have a valid format, it displays a text 
+  // And doesn't go to the next step
   function checkIfValidUrl(url){
     try {
       let result = Boolean(new URL(url));
@@ -33,6 +35,7 @@ export default function Form({submittedURLCb,changeView}) {
 
   return (
         <form onSubmit={(event)=>handleSubmit(event)}>
+          
             <input placeholder='Enter your URL' value={url} onChange={(event)=>handleChange(event)} />
             <button>Submit</button>
 

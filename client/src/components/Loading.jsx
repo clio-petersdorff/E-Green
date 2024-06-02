@@ -7,6 +7,7 @@ export default function Loading() {
         <div>
             <img src='src/assets/logo-inline-clear.svg' />
 
+            {/* This is a CSS animation */}
             <div id="textDiv">
                 <p className='text text-l'>L</p>
                 <p className='text text-o'>O</p>

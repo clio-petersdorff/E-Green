@@ -14,6 +14,7 @@ export default function Quiz({currentView,changeView}) {
     const [step,setStep] = useState("questions")
     const [answers,setAnswers] = useState(EMPTY_FORM)
 
+    //Callback function for QuizQuestions component
     function submitAnswers(profile, when){
       let newAnswers = {...answers};
       

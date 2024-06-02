@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Quiz from './Quiz';
 
@@ -21,7 +21,8 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
         }
     }
 
-    calculateScore();
+    useEffect(calculateScore(),[])
+    
 
     function handleChange(event){
         setVisitors(event.target.value);

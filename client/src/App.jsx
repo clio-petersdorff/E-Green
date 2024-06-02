@@ -14,11 +14,12 @@ import '../src/App.css'
 export default function App() {
   const [emissions,setEmissions] = useState(2.3);
   const [greenHoster,setGreenHoster] = useState(true);
-  // const [isLoading,setIsLoading] = useState(false);
   const [view,setView]= useState('Results');
   
   
+  //These four functions are chained and calculates a website's Co2 emissions
 
+  //Use the API PageSpeed Insight API by Google to get the number of bytes of the page
   function getBytesNumber(url){
     let myKeySpeed = "AIzaSyBbPGKJV_6KhpruB8Q2Ra15LdU95i0MWzA"
 
@@ -40,7 +41,7 @@ export default function App() {
     }
 
   
-
+    //Use the Who is XML API to get the hosting service name
     function getHostName(url,bytes){
       const parsedUrl = new URL(url); // Parse the URL
       axios.get(`https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=at_fcNZEBwlbIhvWR5qKGQP1v0MJibor&domainName=${url}`,{
@@ -58,6 +59,8 @@ export default function App() {
       });
   }
 
+  //Use the Green Check by The Green Web Foundation to see if the hosting service is considered green
+  //Change the state isGreen.
   function getIsGreenHosting(hosterName,bytes){
     axios.get(`https://api.thegreenwebfoundation.org/api/v3/greencheck/${hosterName}`)
     .then((response)=>{
@@ -70,7 +73,8 @@ export default function App() {
   });
   }
 
-
+  //Calculate the Co2 emissions with the Co2.js library
+  //Change the state emissions
   function getCO2gramsPerView(bytes,isGreen){
     const swd = new co2({model: "swd"});
 
@@ -81,13 +85,15 @@ export default function App() {
     setView("Results");
   }
 
-  
+  //Callabck function for the form component to get the URL
+  //And start the chaining of the 4 functions
   function submittedURL(url){
     setView("Loading");
     getBytesNumber(url);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  //Callback function for many components to change the current view
   function changeView(newView){
     setView(newView);
     window.scrollTo({top:0, behavior: "smooth"});

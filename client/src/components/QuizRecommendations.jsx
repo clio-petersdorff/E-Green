@@ -7,26 +7,22 @@ export default function QuizRecommendations({takeQuizAgain, userAnswers}) {
   const {profile,when} = userAnswers;
   const [reco,setReco] = useState(null);
   const [featuredReco,setFeaturedReco] =useState();
- 
-  // let reco = dataQuiz.filter((item)=>{
-  //   return item.profile===profile && (item.when===when || item.when==="Doesn't matter");
-  // })
+
 
   useEffect(()=>{
     getRecommendations();
   }, [])
 
+  //Get the recommendations from the database
   function getRecommendations (){
     axios.get(`http://localhost:5000/api/goodpratices/${profile}/${when}`)
     .then((response)=> {setReco(response.data);
       setFeaturedReco(response.data[0]);
-      // console.log(response.data)
     }
     ).catch((err)=>console.log(err.message))
   }
 
 
-  
 
   function handleClick(name){
     let newFeaturedReco = reco.find((item)=> item.name===name);
