@@ -96,7 +96,7 @@
 }
 
 
-@media screen and (max-width:900px){
+@media screen and (max-width:450px){
     #loading img {
         width:40%;
         left: 30%;

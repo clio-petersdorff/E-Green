@@ -3,7 +3,6 @@
   background-color: #242424;
   color:white;
   text-align: center;
-  width: 90%;
     padding: 0;
     margin: auto
 }
@@ -12,9 +11,16 @@
   box-sizing: border-box;
 }
 
-html, body {
-  width: 105%;
-  margin: 0;
-  padding: 0;
+
+
+@media screen and (max-width:450px){
+  html, body {
+    width: 105%;
+    margin: 0;
+    padding: 0;
+  }
+  :root{
+    width:90%;
+  }
 }
 

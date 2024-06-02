@@ -83,7 +83,7 @@
     margin:0px;
 }
 
-@media screen and (max-width:900px){
+@media screen and (max-width:450px){
     #quizComponent {
         margin-left: 0;
         margin-top:30px;
