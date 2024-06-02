@@ -1,7 +1,7 @@
 section {
     display: flex;
     width:70%;
-    margin:20px auto;
+    margin:80px auto;
     align-items: center;
 }
 
@@ -87,4 +87,33 @@ footer section p {
 footer img {
     width:100px;
     min-width: none;
+}
+
+@media screen and (max-width:900px){
+    section{
+        display: block;
+        width:100%;
+    }
+
+    figure img {
+        width:85%;
+        margin:40px 0px 30px;
+    }
+
+    form {
+        display: block;
+        width:100%;
+        text-align: center;
+    }
+    
+    footer section {
+        display: block;
+        padding:40px;
+        margin-top: 20px;
+    }
+
+    footer {
+        width:110%;
+        margin-left:-20px;
+    }
 }

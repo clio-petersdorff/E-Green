@@ -94,3 +94,16 @@
         border-radius: 20px;
     }
 }
+
+
+@media screen and (max-width:900px){
+    #loading img {
+        width:40%;
+        left: 30%;
+    }
+
+    #loading {
+        height: fit-content;
+        margin:180px 0px 90px;
+    }
+}

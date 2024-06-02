@@ -82,3 +82,11 @@
     border-radius: 50%;;
     margin:0px;
 }
+
+@media screen and (max-width:900px){
+    #quizComponent {
+        margin-left: 0;
+        margin-top:30px;
+        height:fit-content;
+    }
+}

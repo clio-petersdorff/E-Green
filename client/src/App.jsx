@@ -12,10 +12,10 @@ import { co2 } from '@tgwf/co2';
 import '../src/App.css'
 
 export default function App() {
-  const [emissions,setEmissions] = useState(null);
+  const [emissions,setEmissions] = useState(2.3);
   const [greenHoster,setGreenHoster] = useState(true);
   // const [isLoading,setIsLoading] = useState(false);
-  const [view,setView]= useState('Homepage');
+  const [view,setView]= useState('Results');
   
   
 
@@ -95,7 +95,7 @@ export default function App() {
 
 
   return (
-    <>
+    <div id="App">
 
       {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} changeView={(view)=>changeView(view)} />}
 
@@ -107,7 +107,7 @@ export default function App() {
       
       <RaiseAwareness submittedURLCb={(url)=>submittedURL(url)} 
       currentView={view} changeView={(view)=>changeView(view)}/>
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 #homepage{
-    height:80vh;
+    height:90vh;
     padding-top:15vh;
 }
 
@@ -64,4 +64,25 @@ form .quizOnlyButton{
 .quizOnlyButton:hover{
     background-color: transparent;
     color:#82BA95;
+}
+
+
+@media screen and (max-width:900px) {
+
+    #homepage {
+        height: fit-content;
+    }
+
+    #homepage img {
+        width:75%;
+    }
+
+    form{
+        width: 100%;
+        display: block;
+    }
+
+    .scrollDown {
+        margin-top: 30px;
+    }
 }

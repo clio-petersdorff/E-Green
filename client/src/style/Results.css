@@ -77,3 +77,16 @@
     text-decoration: underline;
     color:white;
 }
+
+
+@media screen and (max-width:900px){
+    #results {
+        display: block;
+        height: fit-content;
+        text-align: center;
+    }
+
+    #score {
+        margin-top: 40px;
+    }
+}

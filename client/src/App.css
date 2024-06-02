@@ -1,3 +1,7 @@
+#App {
+  width: 100%;
+}
+
 button {
   padding:10px;
   border-radius: 5px;
