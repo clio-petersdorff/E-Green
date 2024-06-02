@@ -101,9 +101,9 @@ export default function App() {
 
       {view==="Loading" && <Loading />}
 
-      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster}/>}
+      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster} changeView={(view)=>changeView(view)} currentView={view}/>}
 
-      {view==="QuizOnly" && <Quiz />}
+      {view==="QuizOnly" && <Quiz currentView={view} changeView={(view)=>changeView(view)} />}
       
       <RaiseAwareness submittedURLCb={(url)=>submittedURL(url)} 
       currentView={view} changeView={(view)=>changeView(view)}/>

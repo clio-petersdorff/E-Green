@@ -4,11 +4,11 @@ import Quiz from './Quiz';
 
 import "../style/Results.css"
 
-export default function Results({emissions,isGreenHoster}) {
+export default function Results({emissions,isGreenHoster,changeView,currentView}) {
     const [visitors,setVisitors] = useState(100);
     let score;
 
-    //Get the score with 100x x / 5
+  
     function calculateScore (){
         let g=emissions-0.1;
 
@@ -32,9 +32,10 @@ export default function Results({emissions,isGreenHoster}) {
         <div id="logo"> 
             <img src='src/assets/logo-inline-clear.svg'/>
             <hr />
+            <p id='testAnotherWebsite' onClick={()=>changeView("Homepage")}>Test another website</p>
         </div>
 
-        <Quiz id="quiz"/>
+        <Quiz id="quiz" currentView={currentView} changeView={(view)=>changeView(view)}/>
 
         <div id="score"><span>{score}</span><br/>/100</div>
 

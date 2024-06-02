@@ -5,7 +5,7 @@ import QuizRecommendations from './QuizRecommendations'
 
 import "../style/Quiz.css"
 
-export default function Quiz() {
+export default function Quiz({currentView,changeView}) {
     const EMPTY_FORM = {
       profile : "",
       when : ""
@@ -30,6 +30,9 @@ export default function Quiz() {
 
         {step==="questions" && <QuizQuestions submitAnswersCb={(profile,when)=>submitAnswers(profile,when)} />}
         {step==="recommendations" && <QuizRecommendations takeQuizAgain={()=>setStep("questions")} userAnswers={answers}/>}
+
+        {currentView==="QuizOnly" && <p id="testAnotherWebsite" onClick={()=>changeView("Homepage")}>Go back to homepage.</p>}
+
     </div>
   )
 }

@@ -64,3 +64,16 @@
     font-weight: 700;
     color:#82BA95
 }
+
+#testAnotherWebsite {
+    font-style: italic;
+    color: #82BA95;
+    margin: 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#testAnotherWebsite:hover{
+    text-decoration: underline;
+    color:white;
+}
