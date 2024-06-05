@@ -25,18 +25,26 @@ And 100 being the highest with 0.1g of Co2 per page.
 1. Clone the project to your local machine.
 2. Navigate to the project directory in your terminal.
 3. Run the following commands to install dependencies and set up the database:
-    ```bash
+    ```
     npm install
     npm install axios
     npm install @tgwf/co2
     npm run migrate
     ```
-4. Ensure you have a `.env` file in the root directory with the following variables:
+4. Create your API keys :
+    a. Page Speed Insights API by Google : [generate a new API key here](https://developers.google.com/speed/docs/insights/v5/get-started?hl=fr).
+    b. Who is XML API : Create a new account on [this website](https://whois.whoisxmlapi.com/) then go on [this page](https://whois.whoisxmlapi.com/documentation/generate-new-api-key) to generate the new key.
+5. Ensure you have a `.env` file in the root directory with the following variables:
     ```
     DB_HOST=your_database_host
     DB_USER=your_database_user
     DB_PASS=your_database_password
     DB_NAME=egreen
+    ```
+6. Create a `.env` file in the client folder and add your API keys with these variable names.
+    ```
+    VITE_APP_KEY_PAGESPEED=your_page-speed-insight_api_key
+    VITE_APP_KEY_WHOISXML=your_who_is_xml_api_key
     ```
 
 ### Database Setup
