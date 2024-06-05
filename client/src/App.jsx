@@ -15,13 +15,17 @@ export default function App() {
   const [emissions,setEmissions] = useState(null);
   const [greenHoster,setGreenHoster] = useState(true);
   const [view,setView]= useState('Homepage');
-  
+
+
+    let myKeyXML = import.meta.env.VITE_APP_KEY_WHOISXML;
+    let myKeySpeed = import.meta.env.VITE_APP_KEY_PAGESPEED;
+
   
   //These four functions are chained and calculates a website's Co2 emissions
 
   //Use the API PageSpeed Insight API by Google to get the number of bytes of the page
   function getBytesNumber(url){
-    let myKeySpeed = "AIzaSyBbPGKJV_6KhpruB8Q2Ra15LdU95i0MWzA"
+    
 
     axios.get(`https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed`, {
       params:{
@@ -44,7 +48,9 @@ export default function App() {
     //Use the Who is XML API to get the hosting service name
     function getHostName(url,bytes){
       const parsedUrl = new URL(url); // Parse the URL
-      axios.get(`https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=at_fcNZEBwlbIhvWR5qKGQP1v0MJibor&domainName=${url}`,{
+      
+      console.log(myKeyXML);
+      axios.get(`https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${myKeyXML}&domainName=${url}`,{
         params:{
           outputFormat:"JSON"
         }
