@@ -20,7 +20,7 @@ con.connect(function(err) {
   let sql = fs.readFileSync(__dirname + "/init_db.sql").toString();
   con.query(sql, function(err, result) {
     if (err) throw err;
-    console.log("Table creation `good_practices` was successful!");
+    console.log("Table creation was successful!");
 
     console.log("Closing...");
   });

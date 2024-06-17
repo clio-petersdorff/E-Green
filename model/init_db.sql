@@ -12,6 +12,19 @@ USE egreen;
 -- Create Tables
 --
 
+-- User table
+DROP TABLE IF EXISTS `users`; 
+
+CREATE TABLE `users`(
+	`id` INT NOT NULL AUTO_INCREMENT, 
+	`username` VARCHAR(255) NOT NULL, 
+	`password` VARCHAR(255) NOT NULL, 
+	PRIMARY KEY (id)
+);
+
+-- Good practices
+DROP TABLE IF EXISTS `good_practices`; 
+
 CREATE TABLE good_practices(
     id INT NOT NULL AUTO_INCREMENT, 
     name VARCHAR(255) NOT NULL, 
