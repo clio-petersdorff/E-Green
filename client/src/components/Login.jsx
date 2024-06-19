@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-function Login() {
+function Login({currentView,changeView}) {
   const [credentials, setCredentials] = useState({
     username: "test",
     password: "test",
@@ -71,15 +71,7 @@ function Login() {
           <button className="btn btn-primary" onClick={login}>
             Log in
           </button>
-          <button className="btn btn-outline-dark ml-2" onClick={logout}>
-            Log out
-          </button>
         </div>
-      </div>
-      <div className="text-center p-4">
-        <button className=" btn btn-outline-primary" onClick={requestData}>
-          Request protected data
-        </button>
       </div>
 
       {data && (
@@ -92,3 +84,4 @@ function Login() {
 }
 
 export default Login;
+ 
