@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Login({currentView,changeView}) {
+export default function Login() {
   const [credentials, setCredentials] = useState({
     username: "test",
     password: "test",
@@ -15,6 +15,9 @@ function Login({currentView,changeView}) {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
+  const register = async ()=>{
+
+  }
 
   const login = async () => {
     try {
@@ -46,12 +49,13 @@ function Login({currentView,changeView}) {
 
     } catch(e){
       console.log(e)
-
     }
   };
 
   return (
     <div>
+        <img src='src/assets/logo-inline-clear.svg' />
+        <hr />
       <div>
         <input
           value={username}
@@ -72,6 +76,12 @@ function Login({currentView,changeView}) {
             Log in
           </button>
         </div>
+        <div>
+            <p>If you don't have an account, you can register below <br/></p>
+            <button>
+                Register
+            </button>
+        </div>
       </div>
 
       {data && (
@@ -83,5 +93,5 @@ function Login({currentView,changeView}) {
   );
 }
 
-export default Login;
+
  

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Link, Route, Routes, BrowserRouter} from 'react-router-dom'
+import React from 'react'
+import {Route, Routes, BrowserRouter} from 'react-router-dom'
 
 import FirstPage from './components/FirstPage'
 import Login from './components/Login'

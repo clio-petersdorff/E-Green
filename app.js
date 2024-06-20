@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var authRouter = require("./routes/auth");
+
 const cors = require('cors');
 
 var app = express();
@@ -16,6 +18,7 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/goodpratices', indexRouter);
-// app.use('/users', usersRouter);
+
+app.use('/api/auth', authRouter);
 
 module.exports = app;

@@ -5,10 +5,10 @@ import {useNavigate} from 'react-router-dom'
 import "../style/Homepage.css"
 
 export default function Homepage({submittedURLCb,changeView}) {
-  // let navigate = useNavigate(); 
+  const navigate = useNavigate(); 
 
   function goToLogin(){
-    navigate('/login-page')
+    navigate('/login')
   }
   return (
     <div id="homepage">
@@ -19,8 +19,7 @@ export default function Homepage({submittedURLCb,changeView}) {
         <Form submittedURLCb={(url)=>submittedURLCb(url)} changeView={(view)=>changeView(view)}/>
         <p>OR <br/> <br/> Login to see your history<br/></p>
         
-        <button onClick={()=>changeView("Login")}>Login</button>
-        <button onClick={()=>changeView("Register")}>Register</button>
+        <button onClick={()=>goToLogin()}>Login</button>
         {/* <button onClick={goToLogin()}>Login</button> */}
 
 
