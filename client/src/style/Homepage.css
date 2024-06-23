@@ -8,6 +8,16 @@
     margin-bottom: 20px;
 }
 
+#login{
+    padding-bottom:10vh;
+    padding-top:5vh;
+}
+
+.home-btn {
+    align-items:left;
+    justify-content:left;
+}
+
 .scrollDown{
     border-radius: 50%;
     width:60px;
