@@ -9,7 +9,7 @@ import Quiz from './Quiz';
 import axios from 'axios';
 import { co2 } from '@tgwf/co2';
 
-export default function FirstPage() {
+export default function FirstPage({loggedIn}) {
   // let navigate = useNavigate(); 
 
   const [emissions, setEmissions] = useState(null);
@@ -50,7 +50,7 @@ export default function FirstPage() {
       console.log(myKeyXML);
       axios.get(`https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${myKeyXML}&domainName=${url}`,{
         params:{
-          outputFormat:"JSON"
+          outputFormat:"JSON",
         }
       })
       .then((response)=>{
@@ -107,11 +107,11 @@ export default function FirstPage() {
   return (
     <div id="FirstPage">
 
-      {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} changeView={(view)=>changeView(view)} />}
+      {view==="Homepage" && < Homepage submittedURLCb={(url)=>submittedURL(url)} changeView={(view)=>changeView(view)} loggedIn = {loggedIn}/>}
 
       {view==="Loading" && <Loading />}
 
-      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster} changeView={(view)=>changeView(view)} currentView={view}/>}
+      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster} changeView={(view)=>changeView(view)} currentView={view} loggedIn = {loggedIn}/>}
 
       {view==="QuizOnly" && <Quiz currentView={view} changeView={(view)=>changeView(view)} />}
       

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import Quiz from './Quiz';
+import axios from "axios";
+
 
 import "../style/Results.css"
 
@@ -28,6 +30,24 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
         setVisitors(event.target.value);
     }
 
+    async function saveResults(score) {
+        // if logged in send results to history table
+            const dateTime = new Date()
+            try{
+               const {data} = await axios("/api/auth/user-history",{
+                    method: "GET",
+                    headers: {
+                        authorization: "Bearer" + localStorage.getItem("token")
+                    }
+                })
+                console.log(data)
+            } catch(e){
+                console.log(e)
+            // pop-up? To save result you need to login
+            // navigate("/login")
+            }            
+    }
+
   return (
     <div id="results">
         <div id="logo"> 
@@ -52,7 +72,8 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
             {isGreenHoster && <p style={{color:'#82BA95'}}>Your website's hoster is green !</p>}
             {!isGreenHoster && <p><span style={{color:'red'}}>You don't have a green hoster for your website.</span><br/>
                 Or we don't know the hoster on <a target='blank' href='https://app.greenweb.org/directory/'>this database</a>.</p>}
-        </div>        
+        </div>
+        <button onClick={(score)=>saveResults(score)}>Save results</button>        
         
         <Quiz id="quiz" currentView={currentView} changeView={(view)=>changeView(view)}/>
 

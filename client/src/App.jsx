@@ -13,8 +13,8 @@ export default function App() {
    <BrowserRouter>
     <div>
       <Routes>
-        <Route path = "/" element = {<FirstPage/>}/>
-        <Route path = "/login" element = {<Login/>}/>
+        <Route path = "/" element = {<FirstPage />}/>
+        <Route path = "/login" element = {<Login />}/>
         <Route path = "/history" element = {<History/>}/>
       </Routes>  
     </div>   

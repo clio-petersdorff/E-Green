@@ -63,7 +63,6 @@ router.post("/register", async (req, res) => {
       res.status(400).send({message: e.message})
     }
   
-  
   });
   
   module.exports = router;
