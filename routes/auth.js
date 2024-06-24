@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
         `INSERT INTO users (username, password) VALUES ("${username}", "${hash}")`
       );
   
-      res.send({ message: "Register successful" });
+      res.send({ message: "Registration successful" });
     } catch (err) {
       res.status(400).send({ message: err.message });
     }

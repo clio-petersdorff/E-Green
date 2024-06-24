@@ -7,9 +7,11 @@ import '../style/Login.css'
 
 export default function Login() {
     const { loggedIn, setLoggedIn } = useContext(AuthContext);
+    const {registered, setRegistered} = useContext(AuthContext);
+
     let navigate = useNavigate(); 
 
-    const {login, logout} = useAuth();
+    const {login, logout, register} = useAuth();
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -31,14 +33,11 @@ export default function Login() {
     // Redirect or handle state change after login
 };
 
- 
-  const startRegister = async ()=>{
-    try {
-
-    } catch(e){
-      console.log(e)
-    }
-  }
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    await register(credentials);
+    // Redirect or handle state change after login
+  };
 
   function goToHomepage(){
     navigate("/")
@@ -53,47 +52,51 @@ export default function Login() {
       </div>
 
       {
-        !loggedIn &&
+        !loggedIn && registered && (
         <div>
-            <div>
-                <input
-                value={credentials.username}
-                onChange={handleChange}
-                name="username"
-                type="text"
-                className="form-control mb-2"
-                />
-                <input
-                value={credentials.password}
-                onChange={handleChange}
-                name="password"
-                type="password"
-                className="form-control mb-2"
-                />
-                <div className="d-flex gap-2 justify-content-center">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                    Log in
-                </button>
-                </div>
-                <div>
-                    <p>If you don't have an account, you can register below <br/></p>
-                    <button onClick = {startRegister}>
-                        Register
-                    </button>
-                </div>
-            </div>
+          Registration successful
+        </div>
+      )}
+
+      {
+        !loggedIn && (
+        <div>
+          <input
+          value={credentials.username}
+          onChange={handleChange}
+          name="username"
+          type="text"
+          className="form-control mb-2"
+          placeholder='username'
+          />
+          
+          <input
+          value={credentials.password}
+          onChange={handleChange}
+          name="password"
+          type="password"
+          className="form-control mb-2"
+          placeholder=''
+          />
+
+          <div className="d-flex gap-2 justify-content-center">
+            <button className="btn btn-primary" onClick={handleSubmit}>Log in</button>
+            {!registered && (
+              <button onClick = {handleRegister}> Register</button>
+            )}
           </div>
-          }
+
+        </div>
+      )} 
       
-          {loggedIn && (
-              <div className="text-center p-4">
-                <p>You are logged in as 'username'</p>
-                <button onClick={goToHomepage}>Test website</button>
-                <button onClick = {logout}>Log in as other user</button>
-              </div>
-          )
-          }
-      
+      {
+        loggedIn && (
+          <div className="text-center p-4">
+            <p>You are logged in as 'username'</p>
+            <button onClick={goToHomepage}>Test website</button>
+            <button onClick = {logout}>Log in as other user</button>
+          </div>
+      )}   
 
       {/* Footer */}
       <footer>
@@ -110,7 +113,6 @@ export default function Login() {
           
           <button onClick={()=>window.scrollTo({ top: 0, behavior: 'smooth' })}>To top</button>
       </footer>
-
     </>
     
   );
