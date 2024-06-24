@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 
 import Quiz from './Quiz';
 import axios from "axios";
-
+import AuthContext from "../context/AuthContext";
+import { useAuth } from '../context/AuthContext'; 
 
 import "../style/Results.css"
 
-export default function Results({emissions,isGreenHoster,changeView,currentView}) {
+export default function Results({url, emissions,isGreenHoster,changeView,currentView}) {
+    // const {loggedIn, setLoggedIn } = useContext(AuthContext);
+
     const [visitors,setVisitors] = useState(100);
     let score;
 
@@ -31,20 +34,25 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
     }
 
     async function saveResults(score) {
-        // if logged in send results to history table
-            const dateTime = new Date()
+        console.log("SAVING RESULTS")
+
+            let body = {
+                score: score, 
+                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                url: url
+            }
+            console.log(body.date)
+
             try{
-               const {data} = await axios("/api/auth/user-history",{
-                    method: "GET",
+               const results = await axios.post("/api/auth/user-history", body, {
                     headers: {
-                        authorization: "Bearer" + localStorage.getItem("token")
-                    }
+                        'authorization': "Bearer " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    } 
                 })
-                console.log(data)
+                console.log(results.data)
             } catch(e){
                 console.log(e)
-            // pop-up? To save result you need to login
-            // navigate("/login")
             }            
     }
 
@@ -73,11 +81,9 @@ export default function Results({emissions,isGreenHoster,changeView,currentView}
             {!isGreenHoster && <p><span style={{color:'red'}}>You don't have a green hoster for your website.</span><br/>
                 Or we don't know the hoster on <a target='blank' href='https://app.greenweb.org/directory/'>this database</a>.</p>}
         </div>
-        <button onClick={(score)=>saveResults(score)}>Save results</button>        
+        <button onClick={()=>saveResults(score)}>Save results</button>        
         
         <Quiz id="quiz" currentView={currentView} changeView={(view)=>changeView(view)}/>
-
-
 
     </div>
   )

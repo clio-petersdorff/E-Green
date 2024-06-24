@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import '../style/Login.css'
 
 export default function Login() {
-    const { loggedIn, setLoggedIn } = useContext(AuthContext);
+    const {loggedIn, setLoggedIn } = useContext(AuthContext);
     const {registered, setRegistered} = useContext(AuthContext);
 
     let navigate = useNavigate(); 

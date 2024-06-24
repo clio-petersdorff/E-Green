@@ -15,6 +15,7 @@ export default function FirstPage({loggedIn}) {
   const [emissions, setEmissions] = useState(null);
   const [greenHoster, setGreenHoster] = useState(true);
   const [view, setView]= useState('Homepage');
+  const [testedUrl, setTestedUrl] = useState('')
 
     let myKeyXML = import.meta.env.VITE_APP_KEY_WHOISXML;
     let myKeySpeed = import.meta.env.VITE_APP_KEY_PAGESPEED;
@@ -93,6 +94,7 @@ export default function FirstPage({loggedIn}) {
   //And start the chaining of the 4 functions
   function submittedURL(url){
     setView("Loading");
+    setTestedUrl(url)
     getBytesNumber(url);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -111,7 +113,7 @@ export default function FirstPage({loggedIn}) {
 
       {view==="Loading" && <Loading />}
 
-      {view==="Results" && <Results emissions={emissions} isGreenHoster={greenHoster} changeView={(view)=>changeView(view)} currentView={view} loggedIn = {loggedIn}/>}
+      {view==="Results" && <Results url = {testedUrl} emissions={emissions} isGreenHoster={greenHoster} changeView={(view)=>changeView(view)} currentView={view} loggedIn = {loggedIn}/>}
 
       {view==="QuizOnly" && <Quiz currentView={view} changeView={(view)=>changeView(view)} />}
       

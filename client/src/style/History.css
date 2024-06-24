@@ -7,3 +7,16 @@
     align-items:left;
     justify-content:left;
 }
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+.history-table th, .history-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}

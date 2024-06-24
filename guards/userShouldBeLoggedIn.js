@@ -6,6 +6,7 @@ function userShouldBeLoggedIn(req, res, next){
     // grab token from headers
     const token = req.headers["authorization"].replace(/^Bearer\s/, '')
     if(!token) {// user is not logged in
+        console.log('Token is missing')
         res.status(401).send({"message": "Please provide a token!"})
     } else {
         // verify token

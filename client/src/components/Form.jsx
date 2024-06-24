@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function Form({submittedURLCb,changeView}) {
   const [url,setUrl] = useState("");
-  const [validUrl,setValidUrl] = useState(true);
+  const [validUrl, setValidUrl] = useState(true);
 
   function handleChange(event){
     setUrl(event.target.value);
