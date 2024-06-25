@@ -1,13 +1,23 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Form from './Form'
 import {useNavigate} from 'react-router-dom'
 import AuthContext from "../context/AuthContext"
+import axios from "axios";
 
 import "../style/Homepage.css"
 
 export default function Homepage({submittedURLCb, changeView}) {
+
+  useEffect(()=> {
+      getUserName()
+  }, [])
+
   const navigate = useNavigate(); 
-  const { loggedIn } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
+  let loggedIn = null
+  localStorage.getItem('token') ? loggedIn = true : loggedIn = false
+
+  const [userName, setUserName] =useState('')
 
   function goToLogin(){
     navigate('/login')
@@ -15,6 +25,24 @@ export default function Homepage({submittedURLCb, changeView}) {
 
   function goToHistory(){
     navigate('/history')
+  }
+
+  const handleLogout = () => {
+    logout();
+};
+
+  async function getUserName(){
+    try {
+      const results = await axios.get('/api/auth/users', {            
+        headers: {
+          'authorization': "Bearer " + localStorage.getItem("token")
+        }
+      })
+      console.log(results)
+      setUserName(results.data.username)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   return (
@@ -34,9 +62,9 @@ export default function Homepage({submittedURLCb, changeView}) {
 
         {loggedIn &&
           <>
-          <p>You are logged in as "user.name"</p>
+          <p>You are logged in as <em>{userName}</em></p>
           <button onClick = {goToHistory}>View History</button>
-          <button>Log out</button>
+          <button onClick = {handleLogout}>Log out</button>
           </>
 
         }

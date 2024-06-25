@@ -10,7 +10,11 @@ import axios from "axios";
 
 export default function History(){
     let navigate = useNavigate()
-    const { logout, loggedIn } = useAuth();
+    const { logout} = useAuth();
+    // const [loggedIn, setLoggedIn] = useState(null);
+    let loggedIn = null
+    localStorage.getItem('token') ? loggedIn = true : loggedIn = false
+
 
     const [history, setHistory] = useState([])
 
@@ -24,7 +28,6 @@ export default function History(){
 
     const handleLogout = () => {
         logout();
-        // Redirect or handle state change after logout
     };
 
     const goToLogin = () => {
@@ -36,12 +39,17 @@ export default function History(){
           const results = await axios("/api/auth/user-history", {
             method: "GET",
             headers: {
-              authorization: "Bearer " + localStorage.getItem("token")
+              'authorization': "Bearer " + localStorage.getItem("token")
             }
           }) 
+          for (let i = 0; i<results.data.length; i++){
+            results.data[i].date = results.data[i].date.slice(0, 19).replace('T', ' ')
+            // console.log(results.data[i].date)
+          }
         setHistory(results.data)
         console.log(results.data)
         console.log('History retrieved')
+        // setLoggedIn(true)
     
         } catch(e){
           console.log(e)
@@ -51,8 +59,9 @@ export default function History(){
     return (
         <>
             <button onClick = {goToHomepage} className="home-btn"><i className="fa fa-home"></i></button>
-            <button onClick = {handleLogout}>Log out</button>
-
+            { loggedIn &&
+                <button onClick = {handleLogout}>Log out</button>
+            }
             <div id="history">
                 <img src='src/assets/logo-inline-clear.svg' />
                 <hr />

@@ -12,6 +12,8 @@ export default function Login() {
     let navigate = useNavigate(); 
 
     const {login, logout, register} = useAuth();
+    const [userName, setUserName] =useState('')
+
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -25,6 +27,7 @@ export default function Login() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
+    setUserName(credentials.username)
   };
 
   const handleSubmit = async (e) => {
@@ -42,6 +45,24 @@ export default function Login() {
   function goToHomepage(){
     navigate("/")
   }
+
+  function goToHistory(){
+    navigate('/history')
+  }
+
+  // async function getUserName(){
+  //   try {
+  //     const results = await axios.get('/api/auth/users', {            
+  //       headers: {
+  //         'authorization': "Bearer " + localStorage.getItem("token")
+  //       }
+  //     })
+  //     console.log(results)
+  //     setUserName(results.data.username)
+  //   } catch(e) {
+  //     console.log(e)
+  //   }
+  // }
 
   return (
     <>
@@ -92,8 +113,9 @@ export default function Login() {
       {
         loggedIn && (
           <div className="text-center p-4">
-            <p>You are logged in as 'username'</p>
+            <p>You are logged in as <em>{userName}</em></p>
             <button onClick={goToHomepage}>Test website</button>
+            <button onClick={goToHistory}>View history</button>
             <button onClick = {logout}>Log in as other user</button>
           </div>
       )}   

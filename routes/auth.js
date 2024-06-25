@@ -81,6 +81,18 @@ router.post("/register", async (req, res) => {
       res.status(500).send({error:e.message})
     }
   })
+
+  router.get('/users', userShouldBeLoggedIn, async (req,res)=>{
+    try {
+      console.log('GET USER NAME')
+      console.log(req.userId)
+      const query = `SELECT * FROM users WHERE user_id = ${req.userId}`
+      const result = await db(query)
+      res.status(200).send(result.data[0])
+    } catch(e){
+      res.status(500).send({error:e.message})
+    }
+  })
   
   module.exports = router;
   

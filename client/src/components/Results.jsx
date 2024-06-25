@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom';
 
 import Quiz from './Quiz';
 import axios from "axios";
@@ -9,11 +10,14 @@ import "../style/Results.css"
 
 export default function Results({url, emissions,isGreenHoster,changeView,currentView}) {
     // const {loggedIn, setLoggedIn } = useContext(AuthContext);
+    const [isButtonDisabled, setButtonDisabled] = useState(false);
 
     const [visitors,setVisitors] = useState(100);
     let score;
 
-  
+    let loggedIn = null
+    localStorage.getItem('token') ? loggedIn = true : loggedIn = false
+
     function calculateScore (){
         let g=emissions-0.1;
 
@@ -27,13 +31,14 @@ export default function Results({url, emissions,isGreenHoster,changeView,current
     }
 
     calculateScore()
+    let navigate = useNavigate()
     
-
     function handleChange(event){
         setVisitors(event.target.value);
     }
 
     async function saveResults(score) {
+        // event.target.disabled = true
         console.log("SAVING RESULTS")
 
             let body = {
@@ -51,9 +56,19 @@ export default function Results({url, emissions,isGreenHoster,changeView,current
                     } 
                 })
                 console.log(results.data)
+                setButtonDisabled(true)
             } catch(e){
                 console.log(e)
+                navigate('/login')
             }            
+    }
+
+    function goToHistory(){
+        navigate('/history')
+    }
+
+    function goToLogin(){
+        navigate('/login')
     }
 
   return (
@@ -81,7 +96,31 @@ export default function Results({url, emissions,isGreenHoster,changeView,current
             {!isGreenHoster && <p><span style={{color:'red'}}>You don't have a green hoster for your website.</span><br/>
                 Or we don't know the hoster on <a target='blank' href='https://app.greenweb.org/directory/'>this database</a>.</p>}
         </div>
-        <button onClick={()=>saveResults(score)}>Save results</button>        
+        <div>
+            {loggedIn && (
+            <>
+                <button
+                    onClick={() => saveResults(score)}
+                    className={!isButtonDisabled ? "disabledButton" : null}
+                    disabled={isButtonDisabled}
+                >
+                    Save results
+                </button>
+                {isButtonDisabled && (
+                    <button onClick={goToHistory}>View all results</button>
+                )}
+            </>
+            )}
+
+            {
+                !loggedIn &&
+                <>
+                <p>To save your result, please log in</p>
+                <button onClick = {goToLogin}>Login</button>
+                </>
+            }
+        </div>
+       
         
         <Quiz id="quiz" currentView={currentView} changeView={(view)=>changeView(view)}/>
 
